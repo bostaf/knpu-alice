@@ -13,3 +13,4 @@ AppBundle\Entity\Character:
         email: <email()>
         tagLine: 80%? <sentence()>
         universe: @universe_*
+        avatarFilename: <avatar()>
