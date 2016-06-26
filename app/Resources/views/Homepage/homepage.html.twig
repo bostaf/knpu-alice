@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Real Name</th>
+                <th>High Score</th>
+                <th>Email</th>
+                <th>Universe</th>
+                <th>Tag Line</th>
+                <th>Avatar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for character in characters %}
+                <tr>
+                    <td>{{ character.name }}</td>
+                    <td>{{ character.realName }}</td>
+                    <td>{{ character.highScore }}</td>
+                    <td>{{ character.email }}</td>
+                    <td>{{ character.universeName }}</td>
+                    <td>{{ character.tagLine }}</td>
+                    <td>
+                        {#
+                            I normally use VichUploaderBundle and its Twig
+                            vich_uploader_asset() function to render the URL
+                            to uploaded assets. But for simplicity, I'm just
+                            hardcoding that assets live in the uploads/avatars directory
+                        #}
+                        {% if character.avatarFilename %}
+                            <img src="{{ asset('uploads/avatars/'~character.avatarFilename) }}" alt="{{ character.name }}"/>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7" style="text-align: center;">We need to play more video games</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
